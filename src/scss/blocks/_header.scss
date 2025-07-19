@@ -1,0 +1,84 @@
+.header {
+    position: sticky;
+    top: 0;
+    background: #fff;
+    /* adjust if using dark theme */
+    border-bottom: 1px solid #e5e7eb;
+    z-index: 50;
+}
+
+.header__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0.75rem 1rem;
+    /* ~12px 16px */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.header__logo {
+    display: inline-flex;
+    align-items: center;
+    font-weight: 800;
+    font-size: 1.125rem;
+    line-height: 1;
+    text-decoration: none;
+    color: #111;
+}
+
+.header__nav {
+    /* container for UL */
+}
+
+.header__menu {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+}
+
+.header__menu>li {
+    list-style: none;
+}
+
+.header__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    /* WCAG target size */
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    color: #111;
+    text-decoration: none;
+}
+
+.header__link:hover {
+    background: #f3f4f6;
+}
+
+.header__link:focus-visible {
+    outline: 3px solid #2563eb;
+    /* visible focus */
+    outline-offset: 3px;
+}
+
+/* Current page indicator */
+.header__link[aria-current="page"] {
+    background: #2563eb;
+    color: #fff;
+}
+
+/* Responsive refinement at wider screens */
+@media (min-width: 1024px) {
+    .header__inner {
+        padding: 1rem 1.25rem;
+    }
+
+    .header__menu {
+        gap: 1.25rem;
+    }
+}
