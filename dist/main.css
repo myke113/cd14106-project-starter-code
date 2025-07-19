@@ -54,3 +54,35 @@ img {
   height: auto;
   display: block;
 }
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid transparent;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.button:focus-visible {
+  outline: 3px solid #2563eb;
+  outline-offset: 3px;
+}
+
+.button--primary {
+  background: #2563eb;
+  color: #fff;
+}
+
+.button--secondary {
+  background: transparent;
+  border-color: #cbd5e1;
+  color: #111;
+}
+
+.button--sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.925rem;
+}

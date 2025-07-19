@@ -1,0 +1,31 @@
+.button {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: $space-3 $space-6;
+    border-radius: $radius;
+    border: 1px solid transparent;
+    text-decoration: none;
+    font-weight: 600
+}
+
+.button:focus-visible {
+    outline: 3px solid $color-primary;
+    outline-offset: 3px
+}
+
+.button--primary {
+    background: $color-primary;
+    color: $color-on-primary
+}
+
+.button--secondary {
+    background: transparent;
+    border-color: #cbd5e1;
+    color: $color-text
+}
+
+.button--sm {
+    padding: $space-2 $space-4;
+    font-size: .925rem
+}
