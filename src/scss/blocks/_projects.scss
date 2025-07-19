@@ -1,0 +1,47 @@
+.projects {
+    padding: $space-12 $space-6
+}
+
+.projects__title {
+    margin: 0 0 $space-6;
+    font-size: clamp(1.25rem, 1.2vw+1rem, 2rem)
+}
+
+.projects__grid {
+    display: grid;
+    gap: $space-6;
+    grid-template-columns: 1fr
+}
+
+/* mobile */
+@media (min-width:$bp-md) {
+    .projects__grid {
+        grid-template-columns: repeat(2, 1fr)
+    }
+}
+
+@media (min-width:$bp-lg) {
+    .projects__grid {
+        grid-template-columns: repeat(3, 1fr)
+    }
+}
+
+.card {
+    background: #fff;
+    border-radius: $radius;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .08)
+}
+
+.card__body {
+    padding: $space-4
+}
+
+.card__title {
+    margin: 0 0 $space-2;
+    font-size: 1.125rem
+}
+
+.card__actions .button+.button {
+    margin-left: $space-3
+}
