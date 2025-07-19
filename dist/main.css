@@ -86,3 +86,41 @@ img {
   padding: 0.5rem 1rem;
   font-size: 0.925rem;
 }
+
+.hero {
+  padding: 3rem 1.5rem;
+  background: #f6f7fb;
+}
+
+.hero__inner {
+  display: grid;
+  gap: 2rem;
+}
+
+.hero__title {
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.75rem, 2.5vw + 1rem, 3rem);
+  line-height: 1.15;
+}
+
+.hero__actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.hero__headshot {
+  width: 100%;
+  max-width: 320px;
+  border-radius: 50%;
+}
+
+@media (min-width: 1024px) {
+  .hero__inner {
+    grid-template-columns: 2fr 1fr;
+    align-items: center;
+  }
+  .hero__media {
+    justify-self: end;
+  }
+}

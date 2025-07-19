@@ -1,0 +1,40 @@
+// Hero Section Partial
+
+.hero {
+    padding: $space-12 $space-6;
+    background: $color-surface
+}
+
+.hero__inner {
+    display: grid;
+    gap: $space-8
+}
+
+.hero__title {
+    margin: 0 0 $space-3;
+    font-size: clamp(1.75rem, 2.5vw + 1rem, 3rem);
+    line-height: 1.15
+}
+
+.hero__actions {
+    display: flex;
+    gap: $space-4;
+    flex-wrap: wrap
+}
+
+.hero__headshot {
+    width: 100%;
+    max-width: 320px;
+    border-radius: 50%
+}
+
+@media (min-width:$bp-lg) {
+    .hero__inner {
+        grid-template-columns: 2fr 1fr;
+        align-items: center
+    }
+
+    .hero__media {
+        justify-self: end
+    }
+}
