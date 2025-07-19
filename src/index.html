@@ -14,15 +14,56 @@
 
 <body id="body">
   <a class="skip-link" href="#main">Skip to main content</a>
-  <header class="header">
+  <header class="header" role="banner">
+    <div class="header__inner">
+      <a href="/" class="header__logo">Myke Folkes</a>
+      <nav class="header__nav" aria-label"Primary">
+        <ul class="header__menu" role="list">
+          <li><a href="#projects" class="header__link">Projects</a></li>
+          <li><a href="#skills" class="header__link">Skills</a></li>
+          <li><a href="#/resume.pdf" class="header__link">Resume</a></li>
+          <li><a href="#contact" class="header__link">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
   <main id="main">
-    <section id="bio" class="bio">
+    <section class="hero" aria-labelledby="intro-title">
+      <div class="hero__inner">
+        <div class="hero__copy">
+          <h1 id="intro-title">Front End Developer with an emphasis on accessible interfaces</h1>
+          <p class="hero__blurb">Obsessed with a11y.</p>
+          <div class="hero__actions">
+            <a href="#projects" class="button button--primary">Latest Projects</a>
+            <a href="/resume.pdf" class="button button--primary">Download Resume</a>
+          </div>
+        </div>
+        <figure class="hero__media">
+          <img src="src/img/headshot.jpg" alt="Headshot of Myke Folkes" class="hero__headshot">
+        </figure>
+      </div>
     </section>
-    <section id="latest-projects" class="latest-projects">
+
+    <section id="projects" class="projects" aria-labelledby="projects-title">
+      <h2 id="projects-title" class="projects__title">Latest Projects</h2>
+      <ul class="projectdz__grid" role="list">
+        <li class="card projects__item">
+          <img src="src/img/project1.jpg" alt="Screenshot of Project One" class="card__media">
+          <div class="card__body">
+            <h3 class="card__title">Project One</h3>
+            <p class="card__text">Brief description of Project One.</p>
+            <p class="card__actions">
+              <a href="#" class="button buttom--sm button--primary">Live</a>
+              <a href="#" class="button button--sm button--secondary">Code</a>
+            </p>
+          </div>
+        </li>
+        <!-- place holder for additional cards -->
+      </ul>
     </section>
   </main>
-  <footer class="footer">
+  <footer class="footer" role="contentinfo">
+    <p class="footer__copy">© <span id="year">2025</span> Myke Folkes, All Rights Reserved.</p>
   </footer>
 </body>
 
