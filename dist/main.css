@@ -353,3 +353,8 @@ img {
 .skills {
   padding: 2rem 1rem;
 }
+
+.skills__title {
+  margin: 0 0 1rem;
+  font-size: clamp(1.25rem, 0.8vw + 1rem, 2rem);
+}
