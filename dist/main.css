@@ -387,3 +387,9 @@ img {
   margin: 0 0 0.5rem;
   font-size: clamp(1.25rem, 0.8vw + 1rem, 2rem);
 }
+
+.contact__blurb {
+  magin: 0 0 1rem;
+  max-width: 60ch;
+  color: #334155;
+}
