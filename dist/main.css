@@ -367,3 +367,13 @@ img {
   padding: 0;
   list-style: none;
 }
+
+.skills__item {
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.75rem;
+  background: #eef2ff;
+  color: #1e29eb;
+  border: 1px solid #c7d2fe;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
