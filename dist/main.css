@@ -393,3 +393,9 @@ img {
   max-width: 60ch;
   color: #334155;
 }
+
+.contact__actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}

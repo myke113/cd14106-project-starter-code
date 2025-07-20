@@ -13,3 +13,9 @@
     max-width: 60ch;
     color: #334155;
 }
+
+.contact__actions {
+    display: flex;
+    gap: $space-sm;
+    flex-wrap: wrap;
+}
