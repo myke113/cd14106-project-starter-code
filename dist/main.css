@@ -377,3 +377,8 @@ img {
   font-weight: 600;
   font-size: 0.95rem;
 }
+
+.contact {
+  padding: 2rem 1rem;
+  background: #f8fafc;
+}
