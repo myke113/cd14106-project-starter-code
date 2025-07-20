@@ -1,31 +1,50 @@
 // Hero Section Partial
 
 .hero {
-    padding: $space-12 $space-6;
-    background: $color-surface
+    padding: $space-lg $space-md;
+    background: $color-surface;
 }
 
 .hero__inner {
     display: grid;
-    gap: $space-8
+    gap: $space-lg;
 }
 
 .hero__title {
-    margin: 0 0 $space-3;
-    font-size: clamp(1.75rem, 2.5vw + 1rem, 3rem);
-    line-height: 1.15
+    margin: 0 0 $space-sm;
+    font-size: $font-size-lg;
+    line-height: 1.15;
+    color: $color-text;
+}
+
+.hero__blurb {
+    margin: 0 0 $space-md;
+    max-width: 60ch;
+    color: $color-text;
 }
 
 .hero__actions {
     display: flex;
-    gap: $space-4;
+    gap: $space-md;
     flex-wrap: wrap
 }
 
 .hero__headshot {
     width: 100%;
     max-width: 320px;
-    border-radius: 50%
+    border-radius: 50%;
+    display: block;
+}
+
+@include respond-lg {
+    .hero__inner {
+        grid-template-columns: 2fr 1fr;
+        align-items: center;
+    }
+
+    .hero__media {
+        justify-self: end;
+    }
 }
 
 @media (min-width:$bp-lg) {

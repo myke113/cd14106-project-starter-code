@@ -46,9 +46,11 @@
 
     <section id="projects" class="projects" aria-labelledby="projects-title">
       <h2 id="projects-title" class="projects__title">Latest Projects</h2>
-      <ul class="projectdz__grid" role="list">
-        <li class="card projects__item">
-          <img src="src/img/project1.jpg" alt="Screenshot of Project One" class="card__media">
+      <ul class="projects__grid" role="list">
+        <li class="projects__item card">
+          <figure class="card__media">
+            <img src="src/img/project1.jpg" alt="Screenshot of Project One" class="card__media">
+          </figure>
           <div class="card__body">
             <h3 class="card__title">Project One</h3>
             <p class="card__text">Brief description of Project One.</p>
@@ -58,8 +60,38 @@
             </p>
           </div>
         </li>
-        <!-- place holder for additional cards -->
+        <li class="projects__item card">
+          <figure class="card__media">
+            <img src="src/img/project2.jpg" alt="Screenshot of Project Two" />
+          </figure>
+          <div class="card__body">
+            <h3 class="card__title">Project Two</h3>
+            <p class="card__text">Brief description of Project Two</p>
+            <div class="card__actions">
+              <a class="button button--sm button--primary" href="#" target="_blank" rel="noopener">Live</a>
+              <a class="button button--sm button--secondary" href="#" target="_blank" rel="noopener">Code</a>
+            </div>
+          </div>
+        </li>
+
+        <li class="projects__item card">
+          <figure class="card__media">
+            <img src="src/img/project3.jpg" alt="Screenshot of Project Three" />
+          </figure>
+          <div class="card__body">
+            <h3 class="card__title">Project Three</h3>
+            <p class="card__text">Brief description of Project Two.</p>
+            <div class="card__actions">
+              <a class="button button--sm button--primary" href="#" target="_blank" rel="noopener">Live</a>
+              <a class="button button--sm button--secondary" href="#" target="_blank" rel="noopener">Code</a>
+            </div>
+          </div>
+        </li>
       </ul>
+
+      <p class="projects__cta">
+        <a class="button button--primary" href="#">View all projects</a>
+      </p>
     </section>
   </main>
   <footer class="footer" role="contentinfo">
