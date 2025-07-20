@@ -382,3 +382,8 @@ img {
   padding: 2rem 1rem;
   background: #f8fafc;
 }
+
+.contact__title {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.25rem, 0.8vw + 1rem, 2rem);
+}
