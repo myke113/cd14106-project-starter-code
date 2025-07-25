@@ -173,6 +173,7 @@ img {
 .projects__title {
   margin: 0 0 2rem;
   font-size: clamp(1.25rem, 0.8vw + 1rem, 2rem);
+  text-align: center;
 }
 
 /* Centered grid with a max width so cards don't stretch */
