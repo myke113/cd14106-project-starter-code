@@ -7,27 +7,46 @@
     font-size: clamp(1.25rem, calc(0.8vw + 1rem), 2rem);
 }
 
+/* Centered grid with a max width so cards don't stretch */
 .projects__grid {
     display: grid;
     gap: $space-lg;
     grid-template-columns: 1fr;
+    /* mobile */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 $space-md;
 
     @media (min-width: 768px) {
         grid-template-columns: repeat(2, 1fr);
+        /* tablet */
     }
 
-    @include respond-lg {
+    @media (min-width: 1024px) {
         grid-template-columns: repeat(3, 1fr);
+        /* desktop */
     }
 }
 
+/* Card */
 .card {
     background: #fff;
     border-radius: 0.75rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, .08);
     overflow: hidden;
+    width: 100%;
+    max-width: 360px;
+    /* clamp so cards don't get huge on ultrawide */
+    margin: 0 auto;
+    /* center card inside its grid cell if narrower */
+    transition: box-shadow 160ms cubic-bezier(.2, .6, .2, 1);
 }
 
+.card:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .12);
+}
+
+/* Media (keeps thumbnails uniform) */
 .card__media {
     aspect-ratio: 16 / 9;
     background: #e5e7eb;
@@ -36,10 +55,14 @@
 .card__media>img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
     display: block;
+    object-fit: cover;
+    /* fill the frame */
+    object-position: center;
+    /* avoid odd cropping bias */
 }
 
+/* Body */
 .card__body {
     padding: $space-md;
 }
@@ -47,6 +70,7 @@
 .card__title {
     margin: 0 0 $space-sm;
     font-size: 1.125rem;
+    line-height: 1.25;
 }
 
 .card__text {
@@ -58,9 +82,4 @@
     display: flex;
     gap: $space-sm;
     flex-wrap: wrap;
-}
-
-.projects__cta {
-    margin-top: $space-lg;
-    text-align: center;
 }
