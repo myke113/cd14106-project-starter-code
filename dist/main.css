@@ -199,6 +199,12 @@ img {
   }
 }
 
+/* Call to action for projects */
+.projects__cta {
+  margin-top: 2rem;
+  text-align: center;
+}
+
 /* Card */
 .card {
   background: #fff;
