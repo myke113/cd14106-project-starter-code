@@ -8,26 +8,26 @@
     border-radius: $radius;
     border: 1px solid transparent;
     text-decoration: none;
-    font-weight: 600
+    font-weight: 600;
 }
 
 .button:focus-visible {
     outline: 3px solid $color-primary;
-    outline-offset: 3px
+    outline-offset: 3px;
 }
 
 .button--primary {
     background: $color-primary;
-    color: $color-on-primary
+    color: $color-on-primary;
 }
 
 .button--secondary {
     background: transparent;
     border-color: #cbd5e1;
-    color: $color-text
+    color: $color-text;
 }
 
 .button--sm {
     padding: $space-2 $space-4;
-    font-size: .925rem
+    font-size: .5rem .875rem;
 }

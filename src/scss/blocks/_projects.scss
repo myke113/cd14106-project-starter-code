@@ -11,12 +11,13 @@
 /* Centered grid with a max width so cards don't stretch */
 .projects__grid {
     display: grid;
+    flex-direction: column;
     gap: $space-lg;
     grid-template-columns: 1fr;
-    /* mobile */
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 $space-md;
+    align-items: stretch;
 
     @media (min-width: 768px) {
         grid-template-columns: repeat(2, 1fr);
@@ -35,18 +36,41 @@
     text-align: center;
 }
 
+.projects__item {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.projects__item .card {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+}
+
 /* Card */
 .card {
     background: #fff;
     border-radius: 0.75rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, .08);
+    display: flex;
+    flex-direction: column;
+    gap: $space-md;
+    flex: 1 1 auto;
     overflow: hidden;
     width: 100%;
     max-width: 360px;
-    /* clamp so cards don't get huge on ultrawide */
     margin: 0 auto;
-    /* center card inside its grid cell if narrower */
     transition: box-shadow 160ms cubic-bezier(.2, .6, .2, 1);
+}
+
+.card .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-width: 9rem;
 }
 
 .card:hover {
@@ -89,4 +113,6 @@
     display: flex;
     gap: $space-sm;
     flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
 }
