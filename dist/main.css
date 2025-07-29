@@ -449,6 +449,7 @@ img {
 }
 
 .skills__item {
+  flex: 0 1 auto;
   padding: 0.5rem 0.75rem;
   border-radius: 0.75rem;
   background: #eef2ff;
@@ -461,21 +462,27 @@ img {
 .contact {
   padding: 2rem 1rem;
   background: #f8fafc;
+  text-align: center;
+  margin: 0 auto;
 }
 
 .contact__title {
   margin: 0 0 0.5rem;
   font-size: clamp(1.25rem, 0.8vw + 1rem, 2rem);
+  text-align: center;
 }
 
 .contact__blurb {
   margin: 0 0 1rem;
   max-width: 60ch;
   color: #334155;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .contact__actions {
   display: flex;
+  justify-content: center;
   gap: 0.5rem;
   flex-wrap: wrap;
 }

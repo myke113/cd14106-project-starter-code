@@ -1,21 +1,28 @@
 .contact {
     padding: $space-lg $space-md;
     background: #f8fafc;
+    text-align: center;
+    margin: 0 auto;
+
 }
 
 .contact__title {
     margin: 0 0 $space-sm;
     font-size: clamp(1.25rem, calc(0.8vw + 1rem), 2rem);
+    text-align: center;
 }
 
 .contact__blurb {
     margin: 0 0 $space-md;
     max-width: 60ch;
     color: #334155;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .contact__actions {
     display: flex;
+    justify-content: center;
     gap: $space-sm;
     flex-wrap: wrap;
 }
