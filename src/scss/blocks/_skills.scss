@@ -1,24 +1,34 @@
 .skills {
+    margin-top: $space-xl;
     padding: $space-lg $space-md;
+    background: #ccc;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
     text-align: center;
 }
 
 .skills__title {
     margin: 0 0 $space-md;
     font-size: clamp(1.25rem, calc(0.8vw + 1rem), 2rem);
+    color: #000;
 }
 
 .skills__list {
     display: flex;
     flex-wrap: wrap;
-    gap: .5rem;
+    gap: $space-md;
     margin: 0;
     padding: 0;
     list-style: none;
     justify-content: center;
+    // max-width: 800px;
 }
 
 .skills__item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     flex: 0 1 auto;
     padding: .5rem .75rem;
     border-radius: .75rem;
@@ -27,4 +37,86 @@
     border: 1px solid #c7d2fe;
     font-weight: 600;
     font-size: .95rem;
+    white-space: nowrap;
+}
+
+/* A11y recuced motion for skills section */
+@media (prefers-reduced-motion: reduce) {
+    .skills__list .skills__item {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+    }
+}
+
+/* Base hidden state */
+.skills__list .skills__item {
+    opacity: 0;
+    will-change: opacity, transform;
+}
+
+@keyframes kfFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(240px)
+    }
+
+    to {
+        opacity: 1;
+        transform: none
+    }
+}
+
+@keyframes kfFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-240px)
+    }
+
+    to {
+        opacity: 1;
+        transform: none
+    }
+}
+
+@keyframes kfFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(240px)
+    }
+
+    to {
+        opacity: 1;
+        transform: none
+    }
+}
+
+/* Default durations/ease */
+$dur: 600ms;
+$ease: cubic-bezier(.2, .6, .2, 1);
+
+/* Start transforms from directions */
+.skills__list .skills__item:nth-child(3) {
+    animation: kfFadeUp $dur $ease both;
+    animation-delay: 0ms;
+}
+
+.skills__list .skills__item:nth-child(4) {
+    animation: kfFromRight $dur $ease both;
+    animation-delay: 180ms;
+}
+
+.skills__list .skills__item:nth-child(2) {
+    animation: kfFromLeft $dur $ease both;
+    animation-delay: 360ms;
+}
+
+.skills__list .skills__item:nth-child(5) {
+    animation: kfFromRight $dur $ease both;
+    animation-delay: 540ms;
+}
+
+.skills__list .skills__item:nth-child(1) {
+    animation: kfFromLeft $dur $ease both;
+    animation-delay: 720ms;
 }

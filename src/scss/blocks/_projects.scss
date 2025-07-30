@@ -116,3 +116,49 @@
     justify-content: center;
     width: 100%;
 }
+
+/* Rules for a11y reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .reveal-li {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
+/* Base animation */
+.reveal-li {
+    opacity:
+        0;
+    transform: translateY(250px);
+    animation: fadeUp 600ms cubic-bezier(.2, .6, .2, 1) forwards;
+    will-change: opacity, transform;
+}
+
+/* Keyframes */
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+$reveal-stagger-step: 150ms; // Delay
+$reveal-stagger-count: 3; // max items for the grid
+
+@for $i from 1 through $reveal-stagger-count {
+    .reveal-li:nth-child(#{$i}) {
+        animation-delay: $i * $reveal-stagger-step;
+    }
+}
+
+/* Base animation for CTA */
+.reveal-cta {
+    opacity: 0;
+    transform: translateY(16px);
+    animation: fadeUp 600ms cubic-bezier(.2, .6, .2, 1) forwards;
+    will-change: opacity, transform;
+
+    /* Delay until after 3rd card - 3 * 150ms + slight delay buffer */
+    animation-delay: 720ms;
+}

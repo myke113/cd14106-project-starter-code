@@ -290,6 +290,51 @@ img {
   width: 100%;
 }
 
+/* Rules for a11y reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-li {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+/* Base animation */
+.reveal-li {
+  opacity: 0;
+  transform: translateY(250px);
+  animation: fadeUp 600ms cubic-bezier(0.2, 0.6, 0.2, 1) forwards;
+  will-change: opacity, transform;
+}
+
+/* Keyframes */
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.reveal-li:nth-child(1) {
+  animation-delay: 150ms;
+}
+
+.reveal-li:nth-child(2) {
+  animation-delay: 300ms;
+}
+
+.reveal-li:nth-child(3) {
+  animation-delay: 450ms;
+}
+
+/* Base animation for CTA */
+.reveal-cta {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fadeUp 600ms cubic-bezier(0.2, 0.6, 0.2, 1) forwards;
+  will-change: opacity, transform;
+  /* Delay until after 3rd card - 3 * 150ms + slight delay buffer */
+  animation-delay: 720ms;
+}
+
 .header {
   position: sticky;
   top: 0;
@@ -430,19 +475,25 @@ img {
   }
 }
 .skills {
+  margin-top: 4rem;
   padding: 2rem 1rem;
+  background: #ccc;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
 }
 
 .skills__title {
   margin: 0 0 1rem;
   font-size: clamp(1.25rem, 0.8vw + 1rem, 2rem);
+  color: #000;
 }
 
 .skills__list {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 1rem;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -450,6 +501,9 @@ img {
 }
 
 .skills__item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   flex: 0 1 auto;
   padding: 0.5rem 0.75rem;
   border-radius: 0.75rem;
@@ -458,6 +512,78 @@ img {
   border: 1px solid #c7d2fe;
   font-weight: 600;
   font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+/* A11y recuced motion for skills section */
+@media (prefers-reduced-motion: reduce) {
+  .skills__list .skills__item {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+/* Base hidden state */
+.skills__list .skills__item {
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+@keyframes kfFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(240px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes kfFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-240px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes kfFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(240px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+/* Default durations/ease */
+/* Start transforms from directions */
+.skills__list .skills__item:nth-child(3) {
+  animation: kfFadeUp 600ms cubic-bezier(0.2, 0.6, 0.2, 1) both;
+  animation-delay: 0ms;
+}
+
+.skills__list .skills__item:nth-child(4) {
+  animation: kfFromRight 600ms cubic-bezier(0.2, 0.6, 0.2, 1) both;
+  animation-delay: 180ms;
+}
+
+.skills__list .skills__item:nth-child(2) {
+  animation: kfFromLeft 600ms cubic-bezier(0.2, 0.6, 0.2, 1) both;
+  animation-delay: 360ms;
+}
+
+.skills__list .skills__item:nth-child(5) {
+  animation: kfFromRight 600ms cubic-bezier(0.2, 0.6, 0.2, 1) both;
+  animation-delay: 540ms;
+}
+
+.skills__list .skills__item:nth-child(1) {
+  animation: kfFromLeft 600ms cubic-bezier(0.2, 0.6, 0.2, 1) both;
+  animation-delay: 720ms;
 }
 
 .contact {
@@ -486,39 +612,4 @@ img {
   justify-content: center;
   gap: 0.5rem;
   flex-wrap: wrap;
-}
-
-/* Rules for a11y reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .reveal-li {
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-  }
-}
-/* Base animation */
-.reveal-li {
-  opacity: 0;
-  transform: translateY(250px);
-  animation: fadeUp 600ms cubic-bezier(0.2, 0.6, 0.2, 1) forwards;
-  will-change: opacity, transform;
-}
-
-/* Keyframes */
-@keyframes fadeUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-.reveal-li:nth-child(1) {
-  animation-delay: 210ms;
-}
-
-.reveal-li:nth-child(2) {
-  animation-delay: 420ms;
-}
-
-.reveal-li:nth-child(3) {
-  animation-delay: 630ms;
 }
