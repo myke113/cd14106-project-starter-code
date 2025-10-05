@@ -1,20 +1,37 @@
+:root {
+    --surface: #ffffff;
+    --surface-elev: #ffffff;
+    --text: #111111;
+    --shadow-lg: 0 98px 24xp rgba(0, 0, 0, 0.12);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --surface: ##0f1115;
+        --surface-elev: #161a22;
+        --text: #f3f4f6;
+        --shadow-lg: 0 98px 24px rgba(0, 0, 0, 0.4);
+    }
+}
+
 * {
-    box-sizing: border-box
+    box-sizing: border-box;
 }
 
 html,
 body {
-    height: 100%
+    height: 100%;
 }
 
 body {
     margin: 0;
     font: 400 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    color: #111
-}
+    color: var(--text);
+    background: var(--surface, #ffffff);
 
-img {
-    max-width: 100%;
-    height: auto;
-    display: block
+    img {
+        max-width: 100%;
+        height: auto;
+        display: block
+    }
 }

@@ -12,16 +12,20 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
     rel="stylesheet">
-</head>
-
+  <link rel="preload" as="image" href="img/headshot.jpeg" imagereset="img/headshot.jpg" imagesizes="(max-width: 768px) 60vw, 40vw">
 <body id="body">
   <a class="skip-link" href="#main">Skip to main content</a>
-  <header class="header" role="banner">
+  <header class="header">
     <div class="header__inner">
       <a href="/" class="header__logo">Myke Folkes</a>
-      <nav class="header__nav" aria-label="Primary" role="navigation">
+      <button class="header__toggle" aria-label="Open menu" aria-controls="primary-nav" aria-expanded="false">
+         <span class="header__toggle-bar" aria-hidden="true"></span>
+         <span class="header__toggle-bar" aria-hidden="true"></span>
+         <span class="header__toggle-bar" aria-hidden="true"></span>
+      </button>
+      <nav class="header__nav" id="primary-nav" aria-label="Primary" role="navigation">
         <ul class="header__menu" role="list">
-          <li><a href="#projects" class="header__link" aria-current="page">Projects</a></li>
+          <li><a href="#projects" class="header__link">Projects</a></li>
           <li><a href="#skills" class="header__link">Skills</a></li>
           <li><a href="/resume.pdf" class="header__link">Resume</a></li>
           <li><a href="#contact" class="header__link">Contact</a></li>
@@ -51,7 +55,7 @@
       <ul class="projects__grid" role="list">
         <li class="projects__item card reveal-li">
           <figure class="card__media">
-            <img class = "card__img" src="img/project1.png" alt="Screenshot of Project One" class="card__media">
+            <img class = "card__img" src="img/project1.png" alt="Screenshot of Project One">
           </figure>
           <div class="card__body">
             <h3 class="card__title">Project One - Udacity Portfolio Project</h3>
@@ -106,7 +110,7 @@
         <li class="skills__item">Git / GitHub / Git Flow</li>
       </ul>
     </section>
-    <section id="contact" class="contact" aria-labelledby="contant-title">
+    <section id="contact" class="contact" aria-labelledby="contant__title">
       <h2 id="contact__title" class="contact__title">Contact</h2>
       <p class="contact__blurb">Need a website or want to collaborate? Let's talk!</p>
       <p class="contact__actions">
@@ -128,6 +132,82 @@
       </nav>
     </div>
   </footer>
+<script>
+  (function() {
+    // Update footer year
+    var y = document.getElementById('year');
+    if (y) { y.textContent = new Date().getFullYear(); }
+
+    // Mobile nav toggle (accessibility-friendly)
+    var toggle = document.querySelector('.header__toggle');
+    var nav = document.getElementById('primary-nav');
+
+    function closeMenu() {
+      if (!document.body.classList.contains('nav-open')) return;
+      document.body.classList.remove('nav-open');
+      if (toggle) {
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Open menu');
+        toggle.focus();
+        var ms=document.getElementById('menu-state'); if(ms) ms.textVcontent='open';
+      }
+      if (nav) nav.removeAttribute('data-trap');
+      document.removeEventListener('keydown', onKeydown, true);
+      document.removeEventListener('click', onDocClick, true);
+    }
+
+    function openMenu() {
+      document.body.classList.add('nav-open');
+      if (toggle) {
+        toggle.setAttribute('aria-expanded', 'true');
+        toggle.setAttribute('aria-label', 'Close menu');
+        var ms=document.getElementById('menu-state'); if(ms) ms.textVcontent='open';
+      }
+      if (nav) {
+        nav.setAttribute('data-trap', '');
+        var first = nav.querySelector('a, button, [tabindex]:not([tabindex="-1"])');
+        if (first) first.focus();
+      }
+      document.addEventListener('keydown', onKeydown, true);
+      document.addEventListener('click', onDocClick, true);
+    }
+
+    function onKeydown(e) {
+      if (e.key === 'Escape') { e.preventDefault(); closeMenu(); return; }
+      if (!document.body.classList.contains('nav-open') || !nav) return;
+      if (e.key !== 'Tab') return;
+      var focusables = nav.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])');
+      if (!focusables.length) return;
+      var first = focusables[0];
+      var last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+
+    function onDocClick(e) {
+      if (!nav) return;
+      var withinNav = nav.contains(e.target);
+      var onToggle = toggle && toggle.contains(e.target);
+      if (!withinNav && !onToggle) closeMenu();
+    }
+
+    if (toggle && nav) {
+      toggle.addEventListener('click', function() {
+        var expanded = this.getAttribute('aria-expanded') === 'true';
+        if (expanded) closeMenu(); else openMenu();
+      });
+    }
+
+    // Close the menu if viewport becomes desktop size
+    var mql = window.matchMedia('(min-width: 768px)');
+    function onChange() { if (mql.matches) closeMenu(); }
+    mql.addEventListener('change', onChange);
+
+    // Improve skip link target focus for Safari/Firefox
+    var main = document.getElementById('main');
+    if (main) { main.setAttribute('tabindex', '-1'); }
+  })();
+</script>
 </body>
 
 </html>
