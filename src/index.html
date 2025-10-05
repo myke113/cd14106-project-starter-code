@@ -13,6 +13,7 @@
     href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
     rel="stylesheet">
   <link rel="preload" as="image" href="img/headshot.jpeg" imagereset="img/headshot.jpg" imagesizes="(max-width: 768px) 60vw, 40vw">
+  </head>
 <body id="body">
   <a class="skip-link" href="#main">Skip to main content</a>
   <header class="header">
@@ -158,6 +159,13 @@
 
     function openMenu() {
       document.body.classList.add('nav-open');
+
+      // In theory, prevent horiztonal layout shift when scrollbar disappears
+      var sbw = window.innerWidth - document.documentElement.clientWidth; // scrtollbar width
+      if (sbw > 0) {
+        // Reserve the same space as the scrollbar by adding padding-right
+        document.body.style.paddingRight = sbw + 'px';
+      }
       if (toggle) {
         toggle.setAttribute('aria-expanded', 'true');
         toggle.setAttribute('aria-label', 'Close menu');
@@ -195,6 +203,17 @@
       toggle.addEventListener('click', function() {
         var expanded = this.getAttribute('aria-expanded') === 'true';
         if (expanded) closeMenu(); else openMenu();
+      });
+    }
+
+    if (nav) {
+      nav.addEventListener('click', function(e) {
+        const link = e.target.closest('a');
+        if (!link) return;
+        if (document.body.classList.contains('nav-open')) {
+          // Close the menu when a nav link is clicked
+          closeMenu();  
+        }
       });
     }
 

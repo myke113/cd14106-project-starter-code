@@ -2,6 +2,12 @@
 .hero {
     padding: 3rem 1.5rem;
     background: #f6f7fb;
+    background-image: url('/src/img/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 40vh;
+
 }
 
 .hero__inner {
@@ -15,6 +21,23 @@
     margin: 0 auto;
     padding: 0 2rem;
     /* inset from viewport edges */
+    background-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(8px);
+    --webkit-backdrop-filter: blur(8px);
+    border-radius: 12px;
+    animation: fadeInHeroInner 600ms ease 100ms both;
+}
+
+@keyframes fadeInHeroInner {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Text side (matches your HTML classes) */

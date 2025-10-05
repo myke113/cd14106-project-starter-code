@@ -4,6 +4,10 @@ body {
   background-image: url("/src/img/background-pexels-pixabay-219692.jpg");
 }
 
+html {
+  scrollbar-gutter: stable both-edges;
+}
+
 .skip-link {
   position: absolute;
   left: -9999px;
@@ -152,8 +156,9 @@ body img {
   }
 }
 .button--secondary {
-  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0.45);
   border-color: #cbd5e1;
+  border: 2px solid rgba(255, 255, 255, 0.8);
   color: #111;
 }
 
@@ -177,6 +182,11 @@ body img {
 .hero {
   padding: 3rem 1.5rem;
   background: #f6f7fb;
+  background-image: url("/src/img/background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 40vh;
 }
 
 .hero__inner {
@@ -190,8 +200,24 @@ body img {
   margin: 0 auto;
   padding: 0 2rem;
   /* inset from viewport edges */
+  background-color: rgba(255, 255, 255, 0.6);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+  --webkit-backdrop-filter: blur(8px);
+  border-radius: 12px;
+  animation: fadeInHeroInner 600ms ease 100ms both;
 }
 
+@keyframes fadeInHeroInner {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 /* Text side (matches your HTML classes) */
 .hero__copy {
   max-width: 60ch;
@@ -253,6 +279,11 @@ body img {
 }
 .projects {
   padding: 2rem 1rem;
+  background-image: url("/src/img/background-pexels-pixabay-219692.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 40vh;
 }
 
 .projects__title {
@@ -306,7 +337,7 @@ body img {
 
 /* Card */
 .card {
-  background: #fff;
+  background: #ccc;
   border-radius: 0.75rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   display: flex;
@@ -424,7 +455,9 @@ body img {
   background: var(--surface-elev);
   color: var(--text);
   box-shadow: var(--shadow-lg);
-  position: relative;
+  position: sticky;
+  top: 0;
+  width: 100%;
   z-index: 2000;
   /* ensure header stacks above hero/content */
   /* stronger default for readability */
@@ -439,11 +472,13 @@ body img {
   gap: 1rem;
 }
 .header__toggle {
+  position: relative;
   inline-size: 44px;
   block-size: 44px;
   border: 0;
   background: transparent;
   display: inline-flex;
+  align-items: center;
   flex-direction: column;
   justify-content: center;
   gap: 6px;
@@ -452,10 +487,31 @@ body img {
   z-index: 3000;
   /* above dropdown */
 }
+.header__toggle:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
+}
 .header__toggle-bar {
-  inline-size: 24px;
-  block-size: 2px;
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  height: 2px;
   background: currentColor;
+  border-radius: 2px;
+  transform-origin: center;
+  will-change: top, transform, opacity;
+  transition: top 340ms cubic-bezier(0.2, 0.8, 0.2, 1), transform 340ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 300ms linear;
+}
+.header__toggle-bar:nth-child(1) {
+  top: 12px;
+}
+.header__toggle-bar:nth-child(2) {
+  top: 22px;
+  transition: top 340ms cubic-bezier(0.2, 0.8, 0.2, 1), transform 340ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 320ms ease;
+  transition-delay: 20ms, 20ms, 0ms;
+}
+.header__toggle-bar:nth-child(3) {
+  top: 32px;
 }
 .header__nav {
   display: none;
@@ -500,9 +556,26 @@ body img {
   font-weight: 600;
 }
 
+body.nav-open .header__toggle-bar:nth-child(1) {
+  top: 22px;
+  transform: rotate(45deg);
+}
+
+body.nav-open .header__toggle-bar:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+body.nav-open .header__toggle-bar:nth-child(3) {
+  top: 22px;
+  transform: rotate(-45deg);
+}
+
 .header__logo {
   color: var(--text);
   text-decoration: none;
+  font-weight: 700;
+  font-size: 1.25rem;
 }
 
 .header__link {
@@ -575,7 +648,7 @@ body.nav-open::before {
 /* Desktop breakpoint: show horizontal nav, hide toggle */
 @media (min-width: 768px) {
   .header {
-    position: static;
+    position: sticky;
   }
   .header__toggle {
     display: none;
@@ -659,6 +732,9 @@ body.nav-open::before {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+  .header__toggle-bar {
+    transition: none !important;
   }
 }
 .skills {

@@ -3,7 +3,9 @@
     background: var(--surface-elev);
     color: var(--text);
     box-shadow: var(--shadow-lg);
-    position: relative;
+    position: sticky;
+    top: 0;
+    width: 100%;
     z-index: 2000;
     /* ensure header stacks above hero/content */
 
@@ -19,11 +21,13 @@
     }
 
     &__toggle {
+        position: relative;
         inline-size: 44px;
         block-size: 44px;
         border: 0;
         background: transparent;
         display: inline-flex;
+        align-items: center;
         flex-direction: column;
         justify-content: center;
         gap: 6px;
@@ -33,11 +37,44 @@
         /* above dropdown */
     }
 
-    &__toggle-bar {
-        inline-size: 24px;
-        block-size: 2px;
-        background: currentColor;
+    &__toggle:focus-visible {
+        outline: 3px solid currentColor;
+        outline-offset: 3px;
     }
+
+    &__toggle-bar {
+        position: absolute;
+        left: 8px;
+        right: 8px;
+        height: 2px;
+        background: currentColor;
+        border-radius: 2px;
+        transform-origin: center;
+        will-change: top, transform, opacity;
+        transition:
+            top 340ms cubic-bezier(.2, .8, .2, 1),
+            transform 340ms cubic-bezier(.2, .8, .2, 1),
+            opacity 300ms linear;
+    }
+
+    &__toggle-bar:nth-child(1) {
+        top: 12px;
+    }
+
+    &__toggle-bar:nth-child(2) {
+        top: 22px;
+        transition:
+            top 340ms cubic-bezier(.2, .8, .2, 1),
+            transform 340ms cubic-bezier(.2, .8, .2, 1),
+            opacity 320ms ease;
+        transition-delay: 20ms, 20ms, 0ms;
+    }
+
+    &__toggle-bar:nth-child(3) {
+        top: 32px;
+    }
+
+
 
     /* Mobile: dropdown panel hidden until open */
     &__nav {
@@ -87,9 +124,26 @@
     }
 }
 
+body.nav-open .header__toggle-bar:nth-child(1) {
+    top: 22px;
+    transform: rotate(45deg);
+}
+
+body.nav-open .header__toggle-bar:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+body.nav-open .header__toggle-bar:nth-child(3) {
+    top: 22px;
+    transform: rotate(-45deg);
+}
+
 .header__logo {
     color: var(--text);
     text-decoration: none;
+    font-weight: 700;
+    font-size: 1.25rem;
 }
 
 .header__link {
@@ -166,7 +220,7 @@ body.nav-open::before {
 /* Desktop breakpoint: show horizontal nav, hide toggle */
 @media (min-width: 768px) {
     .header {
-        position: static;
+        position: sticky;
     }
 
     .header__toggle {
