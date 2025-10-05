@@ -96,6 +96,14 @@ body img {
   border: 1px solid transparent;
   text-decoration: none;
   font-weight: 600;
+  transition: background-color 250ms ease, color 250ms ease, transform 250ms ease, box-shadow 250ms ease, filter 250ms ease;
+  will-change: transform, background-color, filter;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .button:focus-visible {
@@ -103,22 +111,68 @@ body img {
   outline-offset: 3px;
 }
 
+.button:active {
+  animation: btn-press 180ms ease;
+}
+
 .button--primary {
-  background: #2563eb;
+  background-color: #2563eb;
   color: #fff;
 }
 
+@keyframes btn-press {
+  0% {
+    filter: none;
+  }
+  50% {
+    filter: brightness(0.7);
+    transform: scale(0.95);
+  }
+  100% {
+    filter: none;
+  }
+}
+.button--primary:hover {
+  background-color: rgb(34.9, 167.6, 136.3);
+  filter: none;
+  transition: background-color 300ms ease;
+}
+
+.button--secondary:hover {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  transition: background-color 400ms ease, color 400ms ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  .button--secondary:hover {
+    background-color: #0f0f10;
+    color: #f3f4f6;
+    filter: brightness(1.1);
+  }
+}
 .button--secondary {
-  background: transparent;
+  background-color: transparent;
   border-color: #cbd5e1;
   color: #111;
 }
 
 .button--sm {
   padding: 0.5rem 1rem;
-  font-size: 0.5rem 0.875rem;
+  font-size: 0.875rem;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+  .button:hover {
+    transform: none;
+  }
+  .button:active {
+    transform: scale(0.96);
+  }
+}
 /* Base layout */
 .hero {
   padding: 3rem 1.5rem;
