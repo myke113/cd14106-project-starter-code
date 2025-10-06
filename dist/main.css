@@ -199,12 +199,6 @@ body img {
   /* keep hero from stretching to edges */
   margin: 0 auto;
   padding: 0 2rem;
-  /* inset from viewport edges */
-  background-color: rgba(255, 255, 255, 0.6);
-  -webkit-backdrop-filter: blur(8px);
-          backdrop-filter: blur(8px);
-  --webkit-backdrop-filter: blur(8px);
-  border-radius: 12px;
   animation: fadeInHeroInner 600ms ease 100ms both;
 }
 
@@ -222,6 +216,16 @@ body img {
 .hero__copy {
   max-width: 60ch;
   text-align: left;
+  /* Localized translucent panel so we don't get a full-width bar */
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 1.25rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  color: #1e293b;
+  /* keep panel snug to content */
 }
 
 .hero__title {
@@ -288,6 +292,7 @@ body img {
 
 .projects__title {
   margin: 0 0 2rem;
+  color: #e3e3e3;
   font-size: clamp(1.25rem, 0.8vw + 1rem, 2rem);
   text-align: center;
 }
@@ -454,7 +459,6 @@ body img {
 .header {
   background: var(--surface-elev);
   color: var(--text);
-  box-shadow: var(--shadow-lg);
   position: sticky;
   top: 0;
   width: 100%;
@@ -745,12 +749,18 @@ body.nav-open::before {
   margin-left: auto;
   margin-right: auto;
   text-align: center;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.55)), url("/src/img/bokeh-sparkle-white-texture-797c83b81d6e50b5de4f127d7f0b7cc0.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #f9fafb;
+  position: relative;
 }
 
 .skills__title {
   margin: 0 0 1rem;
   font-size: clamp(1.25rem, 0.8vw + 1rem, 2rem);
-  color: #000;
+  color: #eee;
 }
 
 .skills__list {
@@ -761,6 +771,7 @@ body.nav-open::before {
   padding: 0;
   list-style: none;
   justify-content: center;
+  overflow: visible;
 }
 
 .skills__item {
@@ -776,19 +787,49 @@ body.nav-open::before {
   font-weight: 600;
   font-size: 0.95rem;
   white-space: nowrap;
+  transform-origin: center;
+  transition: transform 380ms cubic-bezier(0.3, 1, 0.3, 1), background-color 260ms ease, box-shadow 260ms ease, filter 240ms ease, color 260ms ease;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.skills__item:hover,
+.skills__item:focus-within {
+  transform: scale(1.14) translateZ(0) !important;
+  filter: brightness(1.04);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+  background-color: #a5b4fc;
+  color: #1e3a8a;
+  border-color: #818cf8;
+}
+
+.skills__item:hover {
+  outline: 1px dashed rgba(2, 132, 199, 0.6);
+}
+
+.skills__item > a,
+.skills__item > span,
+.skills__item .skills__link {
+  display: inline-block;
+  transition: color 260ms ease, background-color 260ms ease;
+}
+
+.skills__item:hover > a,
+.skills__item:focus-within > a,
+.skills__item:hover .skills__link,
+.skills__item:focus-within .skills__link {
+  color: #0ea5e9;
 }
 
 /* A11y recuced motion for skills section */
 @media (prefers-reduced-motion: reduce) {
   .skills__list .skills__item {
-    opacity: 1 !important;
-    transform: none !important;
     animation: none !important;
   }
 }
 /* Base hidden state */
 .skills__list .skills__item {
-  opacity: 0;
+  opacity: 1;
   will-change: opacity, transform;
 }
 
@@ -825,35 +866,54 @@ body.nav-open::before {
 /* Default durations/ease */
 /* Start transforms from directions */
 .skills__list .skills__item:nth-child(3) {
-  animation: kfFadeUp 600ms cubic-bezier(0.2, 0.6, 0.2, 1) both;
+  animation: kfFadeUp 600ms cubic-bezier(0.2, 0.6, 0.2, 1) forwards;
   animation-delay: 0ms;
 }
 
 .skills__list .skills__item:nth-child(4) {
-  animation: kfFromRight 600ms cubic-bezier(0.2, 0.6, 0.2, 1) both;
+  animation: kfFromRight 600ms cubic-bezier(0.2, 0.6, 0.2, 1) forwards;
   animation-delay: 180ms;
 }
 
 .skills__list .skills__item:nth-child(2) {
-  animation: kfFromLeft 600ms cubic-bezier(0.2, 0.6, 0.2, 1) both;
+  animation: kfFromLeft 600ms cubic-bezier(0.2, 0.6, 0.2, 1) forwards;
   animation-delay: 360ms;
 }
 
 .skills__list .skills__item:nth-child(5) {
-  animation: kfFromRight 600ms cubic-bezier(0.2, 0.6, 0.2, 1) both;
+  animation: kfFromRight 600ms cubic-bezier(0.2, 0.6, 0.2, 1) forwards;
   animation-delay: 540ms;
 }
 
 .skills__list .skills__item:nth-child(1) {
-  animation: kfFromLeft 600ms cubic-bezier(0.2, 0.6, 0.2, 1) both;
+  animation: kfFromLeft 600ms cubic-bezier(0.2, 0.6, 0.2, 1) forwards;
   animation-delay: 720ms;
 }
 
+/* Skills hover animations */
+/* Each LI becomes an animated “card” */
+/* If the item wraps a link, make it fill the card without reflowing text */
+/* Hover/focus state: zoom like your buttons */
+/* Optional: color shift for the anchor inside */
+/* Dark mode tuning */
+/* Respect reduced motion */
 .contact {
   padding: 2rem 1rem;
   background: #f8fafc;
   text-align: center;
   margin: 0 auto;
+  background-image: url("/src/img/network-background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.contact__container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
 }
 
 .contact__title {

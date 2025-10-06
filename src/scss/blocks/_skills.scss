@@ -6,12 +6,36 @@
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+    background-image:
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.55)),
+        url('/src/img/bokeh-sparkle-white-texture-797c83b81d6e50b5de4f127d7f0b7cc0.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    color: #f9fafb;
+    position: relative; // for overlay
+    // isolation: isolate;
+
+    // &::before {
+    //     content: "";
+    //     position: absolute;
+    //     inset: 0; // fills the section
+    //     background: rgba(0, 0, 0, 0.45); // adjust opacity (0.3–0.7)
+    //     z-index: 0;
+    // }
+
+
+    // >* {
+    //     position: relative; // keeps content above overlay
+    //     z-index: 1;
+    // }
 }
 
 .skills__title {
     margin: 0 0 $space-md;
     font-size: clamp(1.25rem, calc(0.8vw + 1rem), 2rem);
-    color: #000;
+    color: #eee;
 }
 
 .skills__list {
@@ -22,6 +46,7 @@
     padding: 0;
     list-style: none;
     justify-content: center;
+    overflow: visible;
     // max-width: 800px;
 }
 
@@ -38,20 +63,55 @@
     font-weight: 600;
     font-size: .95rem;
     white-space: nowrap;
+    transform-origin: center;
+    transition:
+        transform 380ms cubic-bezier(.3, 1, .3, 1),
+        background-color 260ms ease,
+        box-shadow 260ms ease,
+        filter 240ms ease,
+        color 260ms ease;
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+.skills__item:hover,
+.skills__item:focus-within {
+    transform: scale(1.14) translateZ(0) !important;
+    filter: brightness(1.04);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+    background-color: #a5b4fc;
+    color: #1e3a8a;
+    border-color: #818cf8;
+}
+
+.skills__item:hover {
+    outline: 1px dashed rgba(2, 132, 199, 0.6);
+}
+
+.skills__item>a,
+.skills__item>span,
+.skills__item .skills__link {
+    display: inline-block;
+    transition: color 260ms ease, background-color 260ms ease;
+}
+
+.skills__item:hover>a,
+.skills__item:focus-within>a,
+.skills__item:hover .skills__link,
+.skills__item:focus-within .skills__link {
+    color: #0ea5e9;
 }
 
 /* A11y recuced motion for skills section */
 @media (prefers-reduced-motion: reduce) {
     .skills__list .skills__item {
-        opacity: 1 !important;
-        transform: none !important;
         animation: none !important;
     }
 }
 
 /* Base hidden state */
 .skills__list .skills__item {
-    opacity: 0;
+    opacity: 1;
     will-change: opacity, transform;
 }
 
@@ -97,26 +157,187 @@ $ease: cubic-bezier(.2, .6, .2, 1);
 
 /* Start transforms from directions */
 .skills__list .skills__item:nth-child(3) {
-    animation: kfFadeUp $dur $ease both;
+    animation: kfFadeUp $dur $ease forwards;
     animation-delay: 0ms;
 }
 
 .skills__list .skills__item:nth-child(4) {
-    animation: kfFromRight $dur $ease both;
+    animation: kfFromRight $dur $ease forwards;
     animation-delay: 180ms;
 }
 
 .skills__list .skills__item:nth-child(2) {
-    animation: kfFromLeft $dur $ease both;
+    animation: kfFromLeft $dur $ease forwards;
     animation-delay: 360ms;
 }
 
 .skills__list .skills__item:nth-child(5) {
-    animation: kfFromRight $dur $ease both;
+    animation: kfFromRight $dur $ease forwards;
     animation-delay: 540ms;
 }
 
 .skills__list .skills__item:nth-child(1) {
-    animation: kfFromLeft $dur $ease both;
+    animation: kfFromLeft $dur $ease forwards;
     animation-delay: 720ms;
 }
+
+/* Skills hover animations */
+// .skills a,
+// .skills__link {
+//     display: inline-block;
+//     transition:
+//         color 240ms ease,
+//         background-color 240ms ease,
+//         transform 240ms cubic-bezier(.2, .8, .2, 1),
+//         box-shadow 240ms ease,
+//         filter 240ms ease;
+//     transform-origin: center;
+//     will-change: transform, color, background-color, filter;
+// }
+
+// .skllis a:hover,
+// .skills a:focus-visible,
+// .skills__link:hover,
+// .skills__link:focus-visible {
+//     transform: scale(1.06);
+//     color: #8ea5e9;
+//     text-decoration: none;
+// }
+
+// .skills .chip,
+// .skills__tag {
+//     transition: background-color 240ms ease, color 240ms ease, transform 240ms cubic bezier(.2, .8, .2, 1);
+// }
+
+// .skills .chip:hover,
+// .skills .chip:focus-visible,
+// .skills__tag:hover,
+// .skills__tag:focus-visible {
+//     background-color: rgba(14, 165, 233, 0.12);
+//     color: #8ea5e9;
+//     transform: scale(1.06);
+// }
+
+// .skills .button {
+//     transition:
+//         background-color 240ms ease,
+//         color 240ms ease,
+//         transform 260ms cubic-bezier(.2, .8, .2, 1),
+//         box-shadow 260ms ease,
+//         filter 240ms ease;
+//     will-change: transform, background-color, filter;
+// }
+
+// .skills .button:hover,
+// .skills .button:focus-visible {
+//     transform: scale(1.08);
+//     filter: brightness(1.06);
+//     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+// }
+
+// .skills__item:hover>a,
+// .skills__item:focus-within>a {
+//     transform: scale(1.06);
+//     color: #0ea5e9;
+// }
+
+// @media (prefers-color-sceheme: dark) {
+
+//     .skills a:hover,
+//     .skills a:focus-visible,
+//     .skills__link:hover,
+//     .skills__link:focus-visible {
+//         color: #7dd3fc;
+//     }
+
+//     .skills .chip:hover,
+//     .skills .chip:focus-visible,
+//     .skills__tag:hover,
+//     .skills__tag:focus-visible {
+//         background-color: rgba(125, 211, 252, 0.16);
+//         color: #7dd3fc;
+//     }
+// }
+
+// @media (prefers-reduced-motion: reduce) {
+
+//     .skills a,
+//     .skills__link,
+//     .skills .chip,
+//     .skills__tag,
+//     .skills .button {
+//         transition: none;
+//         transform: none;
+//     }
+// }
+
+// .skills__list {
+//     list-style: none;
+//     margin: 0;
+//     padding: 0;
+//     display: grid;
+//     gap: 0.75rem;
+//     /* keep cards from touching when scaled */
+// }
+
+/* Each LI becomes an animated “card” */
+// .skills__item {
+//     display: block;
+//     /* ensure transform applies to the box */
+//     border-radius: 10px;
+//     background: rgba(255, 255, 255, 0.06);
+//     /* tweak to taste / or remove */
+//     transition:
+//         transform 240ms cubic-bezier(.2, .8, .2, 1),
+//         box-shadow 240ms ease,
+//         background-color 240ms ease,
+//         filter 240ms ease;
+//     transform-origin: center;
+//     will-change: transform, filter;
+// }
+
+/* If the item wraps a link, make it fill the card without reflowing text */
+// .skills__item>a {
+//     display: block;
+//     padding: 0.625rem 0.875rem;
+//     /* tap target */
+//     text-decoration: none;
+// }
+
+/* Hover/focus state: zoom like your buttons */
+// .skills__item:hover,
+// .skills__item:focus-within {
+//     transform: scale(1.06);
+//     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.14);
+//     filter: brightness(1.03);
+// }
+
+/* Optional: color shift for the anchor inside */
+// .skills__item:hover>a,
+// .skills__item:focus-within>a {
+//     color: #0ea5e9;
+//     /* or your brand color */
+// }
+
+/* Dark mode tuning */
+// @media (prefers-color-scheme: dark) {
+//     .skills__item {
+//         background: rgba(255, 255, 255, 0.06);
+//         box-shadow: none;
+//     }
+
+//     .skills__item:hover,
+//     .skills__item:focus-within {
+//         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+//     }
+// }
+
+/* Respect reduced motion */
+// @media (prefers-reduced-motion: reduce) {
+//     .skills__item {
+//         transition: none;
+//         transform: none;
+//         box-shadow: none;
+//         filter: none;
+//     }
+// }

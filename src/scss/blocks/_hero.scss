@@ -20,11 +20,6 @@
     /* keep hero from stretching to edges */
     margin: 0 auto;
     padding: 0 2rem;
-    /* inset from viewport edges */
-    background-color: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(8px);
-    --webkit-backdrop-filter: blur(8px);
-    border-radius: 12px;
     animation: fadeInHeroInner 600ms ease 100ms both;
 }
 
@@ -44,6 +39,16 @@
 .hero__copy {
     max-width: 60ch;
     text-align: left;
+    /* Localized translucent panel so we don't get a full-width bar */
+    background-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 1.25rem 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
+    display: inline-block;
+    color: #1e293b;
+    /* keep panel snug to content */
 }
 
 .hero__title {
