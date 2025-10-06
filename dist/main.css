@@ -920,6 +920,7 @@ body.nav-open::before {
   margin: 0 0 0.5rem;
   font-size: clamp(1.25rem, 0.8vw + 1rem, 2rem);
   text-align: center;
+  color: #1e293b;
 }
 
 .contact__blurb {
